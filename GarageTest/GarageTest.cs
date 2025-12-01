@@ -205,7 +205,7 @@ public class GarageTest
         // Act
 
         // Assert
-        Assert.Equal(OtherGarage.ToArray(), MainGarage.ToArray());
+        Assert.Equal([.. OtherGarage], [.. MainGarage]);
     }
 
 
@@ -223,7 +223,7 @@ public class GarageTest
         // Act
 
         // Assert
-        Assert.Equal(OtherGarage.ToArray(), MainGarage.ToArray());
+        Assert.Equal([.. OtherGarage], [.. MainGarage]);
     }
 
     [Fact]
@@ -243,7 +243,7 @@ public class GarageTest
         MainGarage.Park(new Car("JTR905", Color.Green, FuelType.Gasoline));
 
         // Assert
-        Assert.Equal(OtherGarage.ToArray(), MainGarage.ToArray());
+        Assert.Equal([.. OtherGarage], [.. MainGarage]);
     }
 
     [Fact]
@@ -263,7 +263,7 @@ public class GarageTest
         MainGarage.Park(new Car("JTR905", Color.Green, FuelType.Gasoline));
 
         // Assert
-        Assert.NotEqual(OtherGarage.ToArray(), MainGarage.ToArray());
+        Assert.NotEqual(OtherGarage.ToArray(), [.. MainGarage]);
     }
 
     [Fact]
@@ -277,7 +277,7 @@ public class GarageTest
         MainGarage.Leave("KLM482");
 
         // Assert
-        Assert.Equal(OtherGarage.ToArray(), MainGarage.ToArray());
+        Assert.Equal([.. OtherGarage], [.. MainGarage]);
     }
 
     [Fact]
@@ -293,7 +293,7 @@ public class GarageTest
         MainGarage.Leave(vehicle);
 
         // Assert
-        Assert.Equal(OtherGarage.ToArray(), MainGarage.ToArray());
+        Assert.Equal([.. OtherGarage], [.. MainGarage]);
     }
 
     [Fact]

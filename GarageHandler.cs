@@ -37,9 +37,25 @@ public class GarageHandler
             switch (input)
             {
                 case PARK:
-                    success = Park();
-                    if (success) UI.Display("The vehicle was parked successfully!");
-                    else UI.Display("The vehicle was not parked!"); //TODO: Refactor this code so that it tells you why.
+                    string result = Park();
+                    switch (result)
+                    {
+                        case "Parked":
+                            UI.Display("The vehicle was parked successfully!");
+                            break;
+                        case "Full":
+                            UI.Display("Could not park because the garage is full!");
+                            break;
+                        case "Same":
+                            UI.Display("A car with that registration is already in the garage!");
+                            break;
+                        case "Error":
+                            UI.Display("The vehicle was not parked for unknown reasons!"); //You should never get this
+                            break;
+                        default:
+                            UI.Display("The vehicle was not parked for even more unknown reasons!"); //You should never ever get this
+                            break;
+                    }
                     break;
                 case LEAVE:
                     success = Leave();
@@ -165,23 +181,23 @@ public class GarageHandler
         }
     }
 
-    public bool Park()
+    public string Park()
     {
         Vehicle? vehicle = CreateVehicle();
         if (vehicle != null)
         {
             return Garage.Park(vehicle);
         }
-        return false;
+        return "Error";
     }
 
-    private bool Park(Vehicle vehicle)
+    private string Park(Vehicle vehicle)
     {
         if (vehicle != null)
         {
             return Garage.Park(vehicle);
         }
-        return false;
+        return "Error";
     }
 
     public bool Leave()

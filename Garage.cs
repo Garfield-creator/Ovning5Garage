@@ -19,14 +19,15 @@ public class Garage<Type> : IEnumerable<Type>, IGarage<Type> where Type : Parkin
         }
     }
 
-    public bool Park(Vehicle vehicle)
+    public string Park(Vehicle vehicle)
     {
-        if (_spotsTaken >= _spots.Length) { return false; } //Checks if the garage is full.
+        if (vehicle == null) throw new ArgumentNullException();
+        if (_spotsTaken >= _spots.Length) { return "Full"; } //Checks if the garage is full.
         foreach (var spot in _spots) //Checks if the vehicle is already in the garage
         {
             if (vehicle.Equals(spot.Vehicle))
             {
-                return false;
+                return "Same";
             }
         }
         for (int i = 0; i < _spots.Length; i++)
@@ -35,10 +36,10 @@ public class Garage<Type> : IEnumerable<Type>, IGarage<Type> where Type : Parkin
             {
                 _spots[i].Park(vehicle);
                 _spotsTaken++;
-                return true;
+                return "Parked";
             }
         }
-        return false; //You should not be able to get down here.
+        return "Error"; //You should not be able to get down here.
     }
 
     public bool Leave(Vehicle vehicle)

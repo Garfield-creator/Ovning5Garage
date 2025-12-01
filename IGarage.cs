@@ -14,7 +14,7 @@ namespace Ovning5Garage
 
         bool Leave(Vehicle vehicle);
 
-        bool Park(Vehicle vehicle);
+        string Park(Vehicle vehicle);
 
         bool IsEmpty();
         Type[] Search(string vehicleType, Color color);
