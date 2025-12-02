@@ -21,7 +21,7 @@ public class Garage<Type> : IEnumerable<Type>, IGarage<Type> where Type : Parkin
 
     public string Park(Vehicle vehicle)
     {
-        if (vehicle == null) throw new ArgumentNullException();
+        ArgumentNullException.ThrowIfNull(vehicle);
         if (_spotsTaken >= _spots.Length) { return "Full"; } //Checks if the garage is full.
         foreach (var spot in _spots) //Checks if the vehicle is already in the garage
         {

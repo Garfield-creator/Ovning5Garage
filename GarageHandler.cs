@@ -131,10 +131,10 @@ public class GarageHandler
             if (!spot.IsEmpty())
             {
                 if (spot.Vehicle is Car) cars++;
-                if (spot.Vehicle is Bus) busses++;
-                if (spot.Vehicle is Airplane) airplanes++;
-                if (spot.Vehicle is Motorcycle) motorcycles++;
-                if (spot.Vehicle is Boat) boats++;
+                else if (spot.Vehicle is Bus) busses++;
+                else if (spot.Vehicle is Airplane) airplanes++;
+                else if (spot.Vehicle is Motorcycle) motorcycles++;
+                else if (spot.Vehicle is Boat) boats++;
             }
         }
         UI.Display("In the garage there are:");
@@ -156,7 +156,7 @@ public class GarageHandler
             input = UI.GetChoice("Select search criteria", [$"Vehicle type: {vehicleTypeChoice}", $"Color: {colorChoice.Name}", "Search with these parameters"]);
             if (input == $"Vehicle type: {vehicleTypeChoice}")
             {
-                vehicleTypeChoice = UI.GetChoice("What vehicle type?", VehicleTypes);
+                vehicleTypeChoice = UI.GetChoice("What vehicle type?", ["All", ..VehicleTypes]);
                 
             }
             else if (input == $"Color: {colorChoice.Name}")
